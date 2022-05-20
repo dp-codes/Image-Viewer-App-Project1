@@ -10,12 +10,12 @@ const compressTitle=(title)=>{
 
 export default function updateUI(data){
     let str="";
-    data.forEach(({previewImage,title})=>{
+    data.forEach(({previewImage,title},index)=>{
         if(title.length>25){
             title=compressTitle(title);
         }
          str+=`
-        <div class="list-item">
+        <div class="list-item item-${index}">
             <div class="icon">
                <img src="${previewImage}" alt="${title}">
             </div>

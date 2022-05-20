@@ -89,3 +89,11 @@ body{
      object-fit: cover;
  }
 
+
+
+ /* #################selected-list-styling######### */
+ .selected{
+     background-color: blue !important;
+     color:white;
+ }
+
