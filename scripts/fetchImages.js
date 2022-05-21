@@ -1,13 +1,6 @@
-// Returns fetched data from .json file
+// Returns data to script.js
+import jsondata from'../jsonData.js';
 
-export default async function getImages(){
-    const response= await fetch('../images.json');
-    
-    //console.log(response);
-    if(response.statusText!='OK'){
-        throw new Error("Data not fetched!");
-    }
-    const data=await response.json();
-    //console.log(data);
-    return data;
+export default function getImages(){
+    return jsondata;
 };

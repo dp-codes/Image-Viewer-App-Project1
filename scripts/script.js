@@ -20,32 +20,28 @@ if(localStorage.getItem("imageData_selected")){
     selected=itemNumber;
     ImageData=data;
    
-    getImages()
-    .then((data)=>{
-        if(data.length!=ImageData.length){
-            ImageData=data;
-        }
+    const alldata=getImages();
+    console.log(ImageData);
+    if(data.length!=ImageData.length){
+        ImageData=alldata;
+    }
 
-        updateUI(ImageData);
-        removePreviousSelectedClassAndAddClassOnSelected(selected);
-        updateImageUI(selected);
-        updateEditTitleUI(selected);
-    })
-    .catch(err=>console.log(err));
+    updateUI(ImageData);
+    removePreviousSelectedClassAndAddClassOnSelected(selected);
+    updateImageUI(selected);
+    updateEditTitleUI(selected);
 }
 else{
 //for the first time when site loads
-    getImages()
-    .then((data)=>{
-        ImageData=data;
-        compressedData={itemNumber:0,data};
+    const data=getImages();
+    ImageData=data;
+    compressedData={itemNumber:0,data};
 
-        updateUI(data);
-        removePreviousSelectedClassAndAddClassOnSelected(0);
-        updateImageUI(0);
-        updateEditTitleUI(0);
-    })
-    .catch(err=>console.log(err));
+    updateUI(data);
+    removePreviousSelectedClassAndAddClassOnSelected(0);
+    updateImageUI(0);
+    updateEditTitleUI(0);
+    
 }
 
 
