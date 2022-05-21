@@ -97,3 +97,17 @@ body{
      color:white;
  }
 
+ /* ############input-field styling##############
+  */
+ .image-wrapper input[type='text']{
+    background-color:transparent;
+    border: 0px solid;
+    height:30px;
+    width:100%;
+    font-size: 2rem;
+    text-align: center;
+ } 
+
+ .image-wrapper input[type='text']:focus {
+    outline:none;
+}
