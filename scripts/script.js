@@ -1,36 +1,52 @@
 import getImages from "./fetchImages.js";
 import updateUI,{compressTitle} from "./updateUI.js";
 const itemLists=document.querySelector(".list-items");
-const listItemText=document.querySelector(".image-title");
 const selectedImage=document.querySelector(".image-wrapper img");
 const EditImageTitle=document.querySelector(".image-wrapper input");
 const body=document.body;
 let selected=0;
+let ImageData,compressedData;
 
-let ImageData;
-getImages()
-.then((data)=>{
-    updateUI(data);
+if(localStorage.getItem("imageData_selected")){
+    const localstore=localStorage.getItem("imageData_selected");
+    compressedData=JSON.parse(localstore);
+    const {itemNumber,data}=compressedData;
+    selected=itemNumber;
     ImageData=data;
-    
-    removePreviousSelectedClassAndAddClassOnSelected(0);
-    updateImageUI(0);
-    updateEditTitleUI(0);
-})
-.catch(err=>console.log(err));
+   
+    updateUI(ImageData);
+    removePreviousSelectedClassAndAddClassOnSelected(selected);
+    updateImageUI(selected);
+    updateEditTitleUI(selected);
+}
+else{
+    getImages()
+    .then((data)=>{
+        updateUI(data);
+        ImageData=data;
+        compressedData={itemNumber:0,data};
+        removePreviousSelectedClassAndAddClassOnSelected(0);
+        updateImageUI(0);
+        updateEditTitleUI(0);
+    })
+    .catch(err=>console.log(err));
+}
 
 
 function removePreviousSelectedClassAndAddClassOnSelected(itemNumber){
       let prevSelectedClassName=`.item-${selected}`;
       let currentSelectedClassName=`.item-${itemNumber}`;
 
-  document.querySelector(prevSelectedClassName)
+    document.querySelector(prevSelectedClassName)
     .classList.remove("selected");
 
     selected=itemNumber;
   
     document.querySelector(currentSelectedClassName)
     .classList.add("selected");
+
+    compressedData.itemNumber=selected;
+    localStorage.setItem("imageData_selected",JSON.stringify(compressedData));
 }
 
 const getItemNumber=(item)=>{
@@ -78,12 +94,14 @@ body.addEventListener("keydown",(e)=>{
 EditImageTitle.addEventListener("input",(e)=>{
     let title=e.target.value;
     ImageData[selected].title=title;
-    // if(title.length>25){
-    //     title=compressTitle(title);
-    // }
-    updateUI(ImageData);
-    // console.log(title);
-    // listItemText.innerText=title;
+    if(title.length>25){
+        title=compressTitle(title);
+    }
+    //updateUI(ImageData);
+    document.querySelector(".selected .image-title")
+    .innerText=title;
+    compressedData.data.title=title;
+    localStorage.setItem("imageData_selected",JSON.stringify(compressedData));
 })
 
 

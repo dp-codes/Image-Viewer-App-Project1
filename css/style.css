@@ -17,7 +17,7 @@ body{
 }
 /* ####################utility classes################ */
 .container{
-    max-width: 900px;
+    max-width: 800px;
     width:90%;
     margin:0 auto;
 }
@@ -81,7 +81,7 @@ body{
  /* ####################image-styling####################  */
  .image-wrapper{
     height:85vh;
-    border: 2px solid black;
+    padding: 0 2rem;
  }
  .image-wrapper img{
      width: 100%;
