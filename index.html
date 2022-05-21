@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Viewer App</title>
+    <link rel="icon" type="image/gif/png" href="./img/favicon-image.png">
     <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="./scripts/script.js" ></script>
 </head>
@@ -13,20 +14,30 @@
         <div class="container">
 
             <div class="wrapper">
+                <!------------------------left-Panel (List Container) ------------------>
 
                 <div class="list-items">
-                    <!-- <div class="list-item">
+
+                <!--      Single List Item(added through javascript)
+
+                    <div class="list-item rounded-corners item-0 selected">
                         <div class="icon">
-                            <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="cat-pic">
+                            <img src="Image_link.jpg" alt="cat-pic">
                         </div>
-                        <p class="image-title sm">
+
+                        <p class="image-title sm rounded-corners">
                             cat.jpeg
                         </p>
-                    </div> -->
+                    </div> 
+
+                -->
                 </div>
 
+
+                <!------------------------Right-Panel (Image Wrapper) ------------------>
+
                 <div class="image-wrapper">
-                    <img src="./img/load.jpg" alt="#pic">
+                    <img src="./img/load.jpg" class="rounded-corners" alt="loading Picture" >
                     <input type="text" name="editable-title" value="">
                 </div>
 

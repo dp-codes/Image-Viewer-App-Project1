@@ -1,3 +1,5 @@
+// Returns fetched data from .json file
+
 export default async function getImages(){
     const response= await fetch('../images.json');
     
