@@ -1,12 +1,13 @@
 import getImages from "./fetchImages.js";
-import updateUI,{compressTitle} from "./updateUI.js";
+import updateUI from "./updateUI.js";
+import compressTitle from "./textCompressorToFit.js"
 
 const itemLists=document.querySelector(".list-items");
 const selectedImage=document.querySelector(".image-wrapper img");
 const EditImageTitle=document.querySelector(".image-wrapper input");
 const body=document.body;
 
-let selected=0;                      //image number of current image                     
+let selected=3;                      //image number of current image                     
 let ImageData;                       //fetched json data is stored here
 let compressedData;                  //fresh combined data(currentPageNumber+data) sent to localStorage
 
@@ -67,11 +68,15 @@ const getItemNumber=(item)=>{
 //using the concept of Event-Bubling
 itemLists.addEventListener('click',(e)=>{
     if(e.target===itemLists)return;
-    const targetItem=getItemNumber(e.target);
-    //console.log(targetItem);
-    removePreviousSelectedClassAndAddClassOnSelected(targetItem.itemNumber);
-    updateImageUI(targetItem.itemNumber);
-    updateEditTitleUI(targetItem.itemNumber);
+    let {itemNumber,item}=getItemNumber(e.target);
+    itemNumber=Number(itemNumber);
+
+    removePreviousSelectedClassAndAddClassOnSelected(itemNumber);
+    updateImageUI(itemNumber);
+    updateEditTitleUI(itemNumber);
+
+    compressedData.itemNumber=selected;
+    localStorage.setItem("imageData_selected",JSON.stringify(compressedData));
 });
 
 
@@ -91,17 +96,18 @@ body.addEventListener("keydown",(e)=>{
     removePreviousSelectedClassAndAddClassOnSelected(itemNumber);
     updateImageUI(itemNumber);
     updateEditTitleUI(itemNumber);
+
+    compressedData.itemNumber=itemNumber;
+    localStorage.setItem("imageData_selected",JSON.stringify(compressedData));
 })
 
 //as the user edit the image title in input bar
 //it gets live updated wherever needed to be
 EditImageTitle.addEventListener("input",(e)=>{
     let title=e.target.value;
+    title=compressTitle(title);
     ImageData[selected].title=title;
 
-    if(title.length>25){
-        title=compressTitle(title);
-    }
     document.querySelector(".selected .image-title")
     .innerText=title;
 

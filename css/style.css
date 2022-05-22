@@ -84,8 +84,15 @@ body{
 
 .list-item .image-title{
     font-weight: 600;
-    padding:0.3em;
+    padding:0.2rem;
 }
+
+/* it is a utility class to find length of text in pixels */
+.ruler{
+    font-weight: 600;
+    padding:0.2rem;
+    display: inline;
+}  
 
  /*##############################image-styling####################################  */
  .image-wrapper{
