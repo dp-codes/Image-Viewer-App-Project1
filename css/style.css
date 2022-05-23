@@ -55,7 +55,7 @@ body{
 /* #######################Left-Panel List Container Styling######################### */
 
 .section{
-    padding:5rem;
+    padding:5rem 1rem 2rem 1rem;
 }
 .section .wrapper{
     display:grid;
@@ -125,4 +125,42 @@ body{
 
  .image-wrapper input[type='text']:focus {
     outline:none;
+}
+
+/* ###########################adding media query########################################### */
+
+@media (max-width:768px)and (min-width:500px){
+    .section .wrapper .list-items{ 
+        grid-column: 1/-1;
+    } 
+    .section .wrapper .image-wrapper{ 
+        height:70vh;
+        padding:1rem 0;
+        grid-column: 1/-1;
+    } 
+     .section .wrapper .list-items{
+        width:300px; 
+        justify-self: start;
+    }
+}
+
+@media (max-width:500px){
+    .section{
+        padding:2rem 1rem;
+    }
+    .container{
+        width:96%;
+    }
+    .section .wrapper .list-items{ 
+        grid-column: 1/-1;
+    } 
+    .section .wrapper .image-wrapper{ 
+        grid-column: 1/-1;
+        height:60vh;
+        padding:1rem 0;
+    } 
+     .section .wrapper .list-items{
+        width:300px; 
+        justify-self: center;
+    }
 }
