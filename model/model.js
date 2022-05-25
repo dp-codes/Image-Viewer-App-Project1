@@ -7,7 +7,7 @@ const model={
 
     data:data,
     //fresh combined data(currentPageNumber+data) sent to localStorage
-    localStorageData: JSON.parse(localStorage.getItem("imageData_selected")),
+    localStorageData: JSON.parse(localStorage.getItem("locally_stored")),
     
     getSelected(){
         return this.selected;
@@ -29,7 +29,7 @@ const model={
     ,
     setLocalStorage(itemNumber,storedata){
         this.localStorageData={itemNumber,storedata};
-        localStorage.setItem("imageData_selected",JSON.stringify(this.localStorageData));
+        localStorage.setItem("locally_stored",JSON.stringify(this.localStorageData));
     }
 
 }
