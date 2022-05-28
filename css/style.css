@@ -18,7 +18,6 @@ body{
 /* #################################Utility Classes##################################*/
 .container{
     max-width: 800px;
-    width:90%;
     margin:0 auto;
 }
 
@@ -55,26 +54,40 @@ body{
 /* #######################Left-Panel List Container Styling######################### */
 
 .section{
-    padding:5rem 1rem 2rem 1rem;
+    padding-top:4vh;
 }
 .section .wrapper{
-    display:grid;
-    grid-template-columns: 300px 1fr;
+    display:flex;
     width:100%;
 } 
 .section .wrapper .list-items{
-    width:100%; 
+    width:35%;
+    margin:0 2%; 
 }
-
+.image-wrapper{
+    width:65%;
+    height:85vh;
+    margin:0 2%;
+ }
 /* ############################Individual List-item Styling########################## */
 .list-item{
+    list-style: none;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .list-item .icon{
-    width:50px;
-    height:50px;
-    padding:7px;
+    position: relative;
+    padding-bottom: 20%;
+    width:20%;
+
+}
+.list-item .image{
+    position: absolute;
+	top: 10%;
+	left: 10%;
+	bottom: 10%;
+	right: 10%;
 }
 .list-item .icon img{
    height:100%;
@@ -83,26 +96,24 @@ body{
 }
 
 .list-item .image-title{
+    width:80%;
     font-weight: 600;
-    padding:0.2rem;
+    padding:0 1%;
 }
 
 /* it is a utility class to find length of text in pixels */
 .ruler{
     font-weight: 600;
-    padding:0.2rem;
     display: inline;
 }  
 
  /*##############################image-styling####################################  */
- .image-wrapper{
-    height:85vh;
-    padding: 0 2rem;
- }
+ 
  .image-wrapper img{
      width: 100%;
      height:100%;
      object-fit: cover;
+     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.119);
  }
 
 
@@ -111,56 +122,75 @@ body{
  .selected{
      background-color: blue !important;
      color:white;
+     box-shadow: 2px 0.5px 5px rgba(0, 0, 255, 0.175);
  }
 
  /* #######################input-field styling########################################*/
- .image-wrapper input[type='text']{
-    background-color:transparent;
-    border: 0px solid;
-    height:30px;
+ .image-wrapper .editable-title{
     width:100%;
-    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
     text-align: center;
+    resize: none;
+    background-color:transparent;
+    border: none;
  } 
 
- .image-wrapper input[type='text']:focus {
+ .image-wrapper .editable-title:focus {
     outline:none;
 }
-
+/* 769px — 1024px: Small screens, laptops */
 /* ###########################adding media query########################################### */
 
-@media (max-width:768px)and (min-width:500px){
-    .section .wrapper .list-items{ 
-        grid-column: 1/-1;
+
+/* 481px — 768px: iPads, Tablets */
+@media (max-width:768px)and (min-width:481px){
+    
+    .section .wrapper{
+        padding:0 2%;
+        flex-direction: column;
     } 
-    .section .wrapper .image-wrapper{ 
-        height:70vh;
-        padding:1rem 0;
-        grid-column: 1/-1;
-    } 
-     .section .wrapper .list-items{
-        width:300px; 
-        justify-self: start;
+    .section .wrapper .list-items{
+        width:50%;
+        margin:0 auto; 
+    }
+    .image-wrapper{
+         height:70vw;
+        width:80vw;
+        margin:3vw auto;
+     }
+     .list-item{
+        box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.075);
+    }
+    .selected{
+        box-shadow: 5px 2px 5px rgba(0, 0, 255, 0.175);
     }
 }
 
-@media (max-width:500px){
-    .section{
-        padding:2rem 1rem;
+/* 320px — 480px: Mobile devices */
+@media (max-width:480px){
+    :root{
+        /* same as 9px */
+       font-size:56.25%;
     }
-    .container{
-        width:96%;
+    .section .wrapper{
+        padding:0 1%;
+        flex-direction: column;
+    } 
+    .section .wrapper .list-items{
+        width:80%;
+        margin: 0 auto; 
     }
-    .section .wrapper .list-items{ 
-        grid-column: 1/-1;
-    } 
-    .section .wrapper .image-wrapper{ 
-        grid-column: 1/-1;
-        height:60vh;
-        padding:1rem 0;
-    } 
-     .section .wrapper .list-items{
-        width:300px; 
-        justify-self: center;
+    .image-wrapper{
+         height:100vw;
+        width:90vw;
+        margin:3vw auto;
+     }
+     .list-item{
+        box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.075);
+    }
+    .selected{
+        box-shadow: 5px 2px 5px rgba(0, 0, 255, 0.175);
     }
 }

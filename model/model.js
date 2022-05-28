@@ -1,20 +1,20 @@
-import data from "./jsonData.js";
-// let selected=0;
-// let localStorageData= JSON.parse(localStorage.getItem("imageData_selected"));
-const model={
-    //image number of current image
-    selected:0,
+import imageData from "./imageData.js";
 
-    data:data,
-    //fresh combined data(currentPageNumber+data) sent to localStorage
-    localStorageData: JSON.parse(localStorage.getItem("locally_stored")),
+const model={
+    //imageID of currentImage
+    currentImageId:0,
+
+    data:imageData,
+
+    //stores latest state of {currentImageId,data} 
+    localStorageData: JSON.parse(localStorage.getItem("storedData")),
     
-    getSelected(){
-        return this.selected;
+    getCurrentImageId(){
+        return this.currentImageId;
     }
     ,
-    setSelected(itemNumber){
-        this.selected=itemNumber;
+    setCurrentImageId(imageId){
+        this.currentImageId=imageId;
     }
     ,
     getData(){
@@ -27,9 +27,9 @@ const model={
         return this.localStorageData;
     }
     ,
-    setLocalStorage(itemNumber,storedata){
-        this.localStorageData={itemNumber,storedata};
-        localStorage.setItem("locally_stored",JSON.stringify(this.localStorageData));
+    setLocalStorage(selectedImageId,data){
+        this.localStorageData={selectedImageId,data};
+        localStorage.setItem("storedData",JSON.stringify(this.localStorageData));
     }
 
 }
